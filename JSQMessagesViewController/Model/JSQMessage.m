@@ -90,6 +90,20 @@
     return self;
 }
 
+- (instancetype)initWithSenderId:(NSString *)senderId
+               senderDisplayName:(NSString *)senderDisplayName
+                            date:(NSDate *)date
+                  attributedText:(NSAttributedString *)attributedText
+{
+    NSParameterAssert(attributedText != nil);
+
+    self = [self initWithSenderId:senderId senderDisplayName:senderDisplayName date:date isMedia:NO];
+    if (self) {
+        _attributedText = [attributedText copy];
+    }
+    return self;
+}
+
 - (NSUInteger)messageHash
 {
     return self.hash;
@@ -113,7 +127,15 @@
         return NO;
     }
 
-    BOOL hasEqualContent = self.isMediaMessage ? [self.media isEqual:aMessage.media] : [self.text isEqualToString:aMessage.text];
+    BOOL hasEqualContent;
+
+    if (self.isMediaMessage) {
+        hasEqualContent = [self.media isEqual:aMessage.media];
+    } else {
+        hasEqualContent = self.attributedText != nil ?
+                [self.attributedText isEqualToAttributedString:aMessage.attributedText] :
+                [self.text isEqualToString:aMessage.text];
+    }
 
     return [self.senderId isEqualToString:aMessage.senderId]
     && [self.senderDisplayName isEqualToString:aMessage.senderDisplayName]
@@ -123,7 +145,16 @@
 
 - (NSUInteger)hash
 {
-    NSUInteger contentHash = self.isMediaMessage ? [self.media mediaHash] : self.text.hash;
+    NSUInteger contentHash;
+
+    if (self.isMediaMessage) {
+        contentHash = [self.media mediaHash];
+    } else {
+        contentHash = self.attributedText != nil ?
+                self.attributedText.hash :
+                self.text.hash;
+    }
+
     return self.senderId.hash ^ self.date.hash ^ contentHash;
 }
 
@@ -149,6 +180,7 @@
         _date = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(date))];
         _isMediaMessage = [aDecoder decodeBoolForKey:NSStringFromSelector(@selector(isMediaMessage))];
         _text = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(text))];
+        _attributedText = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(attributedText))];
         _media = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(media))];
     }
     return self;
@@ -161,6 +193,7 @@
     [aCoder encodeObject:self.date forKey:NSStringFromSelector(@selector(date))];
     [aCoder encodeBool:self.isMediaMessage forKey:NSStringFromSelector(@selector(isMediaMessage))];
     [aCoder encodeObject:self.text forKey:NSStringFromSelector(@selector(text))];
+    [aCoder encodeObject:self.attributedText forKey:NSStringFromSelector(@selector(attributedText))];
 
     if ([self.media conformsToProtocol:@protocol(NSCoding)]) {
         [aCoder encodeObject:self.media forKey:NSStringFromSelector(@selector(media))];

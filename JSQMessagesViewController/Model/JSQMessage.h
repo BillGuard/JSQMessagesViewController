@@ -57,6 +57,8 @@
  */
 @property (copy, nonatomic, readonly) NSString *text;
 
+@property (copy, nonatomic, readonly) NSAttributedString *attributedText;
+
 /**
  *  Returns the media item attachment of the message, or `nil` if the message is not a media message.
  *  That is, if `isMediaMessage` is equal to `NO` then this value will be `nil`.
@@ -130,6 +132,14 @@
                senderDisplayName:(NSString *)senderDisplayName
                             date:(NSDate *)date
                            media:(id<JSQMessageMediaData>)media;
+
+/**
+ * Init for attributed text
+ */
+- (instancetype)initWithSenderId:(NSString *)senderId
+               senderDisplayName:(NSString *)senderDisplayName
+                            date:(NSDate *)date
+                  attributedText:(NSAttributedString *)attributedText;
 
 /**
  *  Not a valid initializer.
