@@ -39,6 +39,8 @@
 #import "UIDevice+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
 
+#import "NSAttributedString+JSQMessagesViewController.h"
+
 #import <objc/runtime.h>
 
 
@@ -557,7 +559,10 @@ JSQMessagesKeyboardControllerDelegate>
 
     if (!isMediaMessage) {
         if (messageItem.attributedText) {
-            cell.textView.attributedText = messageItem.attributedText;
+            cell.textView.attributedText =
+                    [messageItem.attributedText attributedStringWithAttributeWithoutOverride:NSFontAttributeName
+                                                                                       value:cell.textView.font
+                                                                                       range:NSMakeRange(0, messageItem.attributedText.length)];
         } else {
             cell.textView.text = [messageItem text];
 

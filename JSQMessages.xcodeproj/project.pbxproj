@@ -110,6 +110,7 @@
 		88C4583019F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C4582F19F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.m */; };
 		BF6DA766BD3B8893A67FB2BD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F882AA48978C11F64DC2DF /* libPods.a */; };
 		C8994EF7DDBE74B9E3F1A16C /* libPods-JSQMessagesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E23238C8D8DF79244DEE1787 /* libPods-JSQMessagesTests.a */; };
+		CC41636A0E6E5FD12E92D020 /* NSAttributedString+JSQMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC416FBB0F8DF4E5BD626792 /* NSAttributedString+JSQMessagesViewController.m */; };
 		E8877F1947CE8050ECCD9539 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3F882AA48978C11F64DC2DF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +281,8 @@
 		88C4582F19F5F7A0008FD427 /* JSQMessagesMediaViewBubbleImageMasker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesMediaViewBubbleImageMasker.m; sourceTree = "<group>"; };
 		AD6E75315517DE46FE495B65 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C3F882AA48978C11F64DC2DF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC416C88829FF539B77DE625 /* NSAttributedString+JSQMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+JSQMessagesViewController.h"; sourceTree = "<group>"; };
+		CC416FBB0F8DF4E5BD626792 /* NSAttributedString+JSQMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+JSQMessagesViewController.m"; sourceTree = "<group>"; };
 		E23238C8D8DF79244DEE1787 /* libPods-JSQMessagesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSQMessagesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -423,6 +426,7 @@
 				88A25F6F19D8E01A00924534 /* Layout */,
 				88A25F7619D8E01A00924534 /* Model */,
 				88A25F8919D8E01A00924534 /* Views */,
+				CC4160DD06B2F8AE1767EEB4 /* Utils */,
 			);
 			path = JSQMessagesViewController;
 			sourceTree = "<group>";
@@ -638,6 +642,15 @@
 				88A2600019D8E18400924534 /* JSQMessagesTypingIndicatorFooterViewTests.m */,
 			);
 			path = ViewTests;
+			sourceTree = "<group>";
+		};
+		CC4160DD06B2F8AE1767EEB4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CC416FBB0F8DF4E5BD626792 /* NSAttributedString+JSQMessagesViewController.m */,
+				CC416C88829FF539B77DE625 /* NSAttributedString+JSQMessagesViewController.h */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -907,6 +920,7 @@
 				8873B60C1AB7B244006DF9AC /* NSBundle+JSQMessages.m in Sources */,
 				88A25FD019D8E01A00924534 /* JSQMessagesComposerTextView.m in Sources */,
 				88A25FC319D8E01A00924534 /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
+				CC41636A0E6E5FD12E92D020 /* NSAttributedString+JSQMessagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

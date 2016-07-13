@@ -24,6 +24,7 @@
 #import "JSQMessageData.h"
 
 #import "UIImage+JSQMessages.h"
+#import "NSAttributedString+JSQMessagesViewController.h"
 
 
 @interface JSQMessagesBubblesSizeCalculator ()
@@ -119,9 +120,14 @@
         CGRect stringRect;
 
         if (messageData.attributedText) {
-            stringRect = [[messageData attributedText] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
-                                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                                          context:nil];
+            NSAttributedString *attributedText =
+                    [messageData.attributedText attributedStringWithAttributeWithoutOverride:NSFontAttributeName
+                                                                                       value:layout.messageBubbleFont
+                                                                                       range:NSMakeRange(0, messageData.attributedText.length)];
+
+            stringRect = [attributedText boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
+                                                      options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                      context:nil];
         } else {
             stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
                                                           options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
